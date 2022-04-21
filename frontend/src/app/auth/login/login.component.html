@@ -1,0 +1,142 @@
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+<div class="contentMenu">
+  <nav class="navbar navbar-expand-lg navbar-dark slogan">
+    <a href="/login" color="#17202A"><img src="../../../assets/imagenes/logo.png" width="145" height="70">
+      Un lugar de descanso y relax para ti
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-lg-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link items" href="/login">Inicio <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Galeria</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Quienes Somos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/registro">Registrate</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/empleados/loginAdmin">Admin</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<body>
+  <div class="content1">
+    <div class="contenidoIndex">
+      <div class="row centroI">
+        <div class="col-8 inicio">
+          <div id="demo" class="carousel slide" data-ride="carousel">
+
+            <!--INDICADORES-->
+            <ul class="carousel-indicators">
+              <li data-target="demo" data-slide-to="0" class="active"></li>
+              <li data-target="demo" data-slide-to="1"></li>
+              <li data-target="demo" data-slide-to="2"></li>
+            </ul>
+
+            <!--IMAGENES-->
+            <div class="carousel-inner images sliderimg">
+
+              <div class="carousel-item active">
+                <img src="../../../assets/imagenes/img1.JPG" class="img-fluid">
+              </div>
+
+              <div class="carousel-item">
+                <img src="../../../assets/imagenes/img2.JPG" class="img-fluid">
+              </div>
+
+              <div class="carousel-item">
+                <img src="../../../assets/imagenes//img3.JPG" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 main-section">
+          <div class="container">
+            <div class="d-flex justify-content-center h-100">
+              <div class="card">
+                <div class="card-header">
+                  <h3>Iniciar Sesión</h3>
+                </div>
+                <div class="card-body">
+                  <form #frmLogin="ngForm" class="login-container" (ngSubmit)="onLogin(frmLogin)">
+                   
+                    <div class="position-relative has-icon-left">
+                      <label>
+                        <i class="icon ion-md-person"> Correo</i>
+                      </label>
+                      <input class="form-control input" id="email" type="email" placeholder="Correo" required email
+                        ngModel name="email" #email="ngModel">
+                      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                        <div *ngIf="email.errors.required">
+                          Ingrese el email.
+                        </div>
+                        <div *ngIf="email.errors.email">
+                          Ingrese un email válido.
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="position-relative has-icon-left">
+                      <label>
+                        <i class="icon ion-md-lock"> Contraseña</i> 
+                      </label>
+                     
+                      <input class="form-control" type="password" placeholder="Contraseña" ngModel required id="clave"
+                        name="clave" minlength="8" #clave="ngModel">
+                      <div *ngIf="clave.invalid && (clave.dirty || clave.touched)" class="text-danger">
+                        <div *ngIf="clave.errors.required">
+                          Ingrese la contraseña
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" value="Login" class="btn float-right login_btn btn-dark">
+                    </div>
+                  </form>
+               
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<footer>
+  <div class="footer" id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8  col-md-8 col-sm-4 col-xs-6">
+          <h3> Contactanos </h3>
+          <ul>
+            <li> <a href="#"> Direccion: Km1 via a Penipe </a> </li>
+            <li> <a href="#"> Correo: </a> </li>
+            <li> <a href="#"> Telefono: (03) 237-4440</a> </li>
+          </ul>
+        </div>
+        <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
+          <h3> Siguenos </h3>
+          <ul class="social">
+            <li><a href="https://www.facebook.com/hosteriaeltoril/"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://twitter.com/hosteriaeltoril"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com/hosteria_el_toril/"><i class="fab fa-instagram"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <!--/.row-->
+    </div>
+    <!--/.container-->
+  </div>
+</footer>

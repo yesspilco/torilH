@@ -1,0 +1,4 @@
+.form-group input[type=file] {
+    opacity: 9 !important;
+    position: revert !important;
+}

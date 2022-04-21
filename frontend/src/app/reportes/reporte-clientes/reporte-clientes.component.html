@@ -1,0 +1,229 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+
+<div class="wrapper">
+    <!--MENU VERTICAL-->
+    <app-menul></app-menul>
+    <div class="main-panel">
+        <!--BARRA SUPERIOR-->
+        <app-header></app-header>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4">
+                            <ul class="nav nav-pills justify-content-end">
+                                <li class="nav-item">
+                                    <a class="active" id="home-tab" data-toggle="tab" href="#home">Activos
+
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="profile-tab" data-toggle="tab" href="#profile">
+                                        <i class="icon ion-md-person-add"></i> Inactivos
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+                    <div class="tab-content" id="myTabContent"><br>
+                        <div class="tab-pane active" id="home">
+                          <!-- <div class="row">
+                                <div class="col-md-1">
+
+                                </div>
+                                <div class="col-4">
+                                    <select name="tipo" id="tipo" class="form-control" (change)="onChange($event)"
+                                        required>
+                                        <option value="1">Clientes con reservaciones</option>
+                                        <option value="2">Clientes con reservaciones pendientes</option>
+                                        <option value="3">Clientes con reservaciones aceptadas</option>
+                                        <option value="4">Clientes con reservaciones canceladas</option>
+                                    </select>
+                                </div>
+                            </div>--> 
+                            <div class="col-lg-12 col-md-12" >
+                                <div class="card" id="htmlData">
+                                        <div class="row card-body" *ngIf="this.bandera==1" style="padding-top:2.5%;float: left;margin-left:5%">
+                                            <div class="col-sm-5">
+                                                <img src="../../../../assets/imagenes/logo.png" height="75px">
+                                            </div>
+                                            <div class="col-sm-7 center">
+                                                <p class="encabezado">HOSTERIA "EL TORIL" </p>
+                                                <p class="encabezado1">RUC:<br>
+                                                    Direccion: Km 1 vía a Penipe<br>
+                                                    Teléfono: (03) 237 4440 -- 098 541 2282 <br></p>
+                                            </div>
+                                        </div>
+                                    <div class="card-header card-header-toril">
+                                        <h4 class="card-title">{{this.msj2}}</h4>
+                                    </div>
+
+                                    <div class="card-body table-responsive" >
+                                        <table class="table table-hover">
+                                            <thead class="text-toril">
+                                                <th>#</th>
+                                                <th>Cédula</th>
+                                                <th>Apellido</th>
+                                                <th>Nombre</th>
+                                                <th>Dirección</th>
+                                                <th>Teléfono</th>
+                                                <th>Correo</th>
+                                                <th>Ver Reservaciones</th>
+                                            </thead>
+                                            <tbody>
+                                                <ng-container *ngFor="let cliente of dataClientes;index as i">
+                                                    <tr>
+                                                        <td scope="row">{{i+1}}</td>
+                                                        <td>{{cliente.cedula}}</td>
+                                                        <td>{{cliente.apellido}}</td>
+                                                        <td>{{cliente.nombre}}</td>
+                                                        <td>{{cliente.direccion}}</td>
+                                                        <td>{{cliente.telefono}}</td>
+                                                        <td>{{cliente.email}}</td>
+                                                        <td class="text-rigth">
+                                                            <a class="btn btn-default" title="Ver Detalles"
+                                                                href="reporte/reservasClientes/{{cliente._id}}">
+                                                                <i class="icon ion-md-copy"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </ng-container>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="col-sm-12">
+                                            <div *ngIf="msj1"
+                                                class="alert alert-danger alert-dismissible fade show text-center"
+                                                role="alert">
+                                                <strong>Aviso!</strong> {{msj1}}...
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12"> 
+                                        {{this.fecha | date:'dd/MM/yyyy'}}
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-end">
+
+                                    <a (click)="downloadPDF()" class="btn float-right login_btn btn-dark"
+                                        style="color: white;">
+                                        <i class="icon ion-md-print"></i> Imprimir
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="profile">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="card">
+                                    <div class="col-sm-12">
+                                        <div *ngIf="msj1"
+                                            class="alert alert-danger alert-dismissible fade show text-center"
+                                            role="alert">
+                                            <strong>Aviso!</strong> {{msj1}}...
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-header card-header-toril">
+                                        <h4 class="card-title">Clientes Inactivos</h4>
+
+                                    </div>
+
+                                    <div class="card-body table-responsive">
+                                        <table class="table table-hover">
+                                            <thead class="text-toril">
+                                                <th>#</th>
+                                                <th>Cédula</th>
+                                                <th>Apellido</th>
+                                                <th>Nombre</th>
+                                                <th>Dirección</th>
+                                                <th>Teléfono</th>
+                                                <th>Correo</th>
+                                                <th>Opciones</th>
+                                            </thead>
+                                            <tbody>
+                                                <ng-container *ngFor="let cliente of dataInactivos;index as i">
+                                                    <tr>
+                                                        <td scope="row">{{i+1}}</td>
+                                                        <td>{{cliente.cedula}}</td>
+                                                        <td>{{cliente.apellido}}</td>
+                                                        <td>{{cliente.nombre}}</td>
+                                                        <td>{{cliente.direccion}}</td>
+                                                        <td>{{cliente.telefono}}</td>
+                                                        <td>{{cliente.email}}</td>
+                                                        <td class="text-rigth">
+                                                            <a class="btn btn-default" title="Activar Cliente"
+                                                                (click)="ActivarCliente(cliente._id)">
+                                                                <i class="icon ion-md-checkmark"> </i></a>
+                                                        </td>
+                                                    </tr>
+                                                </ng-container>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="col-sm-12">
+                                            <div *ngIf="msj1"
+                                                class="alert alert-danger alert-dismissible fade show text-center"
+                                                role="alert">
+                                                <strong>Aviso!</strong> {{msj1}}...
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <!--FOOTER PIE DE PAGINA-->
+            <app-footer></app-footer>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>

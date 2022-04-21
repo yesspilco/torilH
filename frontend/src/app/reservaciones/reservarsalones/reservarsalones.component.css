@@ -1,0 +1,28 @@
+.a{
+    margin-bottom: 1.88rem;
+    text-align: center;
+}
+
+.carousel-multi-item .controls-top .btn-floating {
+    background: #4285f4 !important;
+}
+
+.co{
+    background-color: #919191 !important;
+}
+
+.img-fluid{
+    height: 300px !important;
+}
+
+.ar{
+    padding-left: 20px;
+}
+
+.modal-body{
+    max-height: 420px !important;
+}
+
+.btn-default {
+    background-color: #999999 !important;
+}

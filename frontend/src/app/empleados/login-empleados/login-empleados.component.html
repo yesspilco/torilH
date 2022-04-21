@@ -1,0 +1,56 @@
+<div class="container">
+  <br><br><br><br>
+  <div class="mx-sm-5 px-sm-5">
+      <form  class="mx-sm-5 px-sm-5"  > 
+          <div class="row mx-5 px-5 mb-5">
+          </div>
+          <div class="row mx-sm-5 px-sm-5">
+              <div class="col-sm-12 ">
+                  <div class="mb-2">
+                      <a href="">
+                          <img src="../../../assets/imagenes/logo.png" class="img-responsive rounded mx-auto d-block" alt="El Toril"
+                              title="El Toril">
+                      </a>
+                  </div>
+                  <hr>
+              </div>
+             
+              <div class="col-sm-12 ">
+                  <div class="form-group mx-3 px-3">
+                      <input class="form-control input" id="email" type="email" placeholder="Correo" required email
+                      ngModel name="email">
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                      <div *ngIf="email.errors.required">
+                        Ingrese el email.
+                      </div>
+                      <div *ngIf="email.errors.email">
+                        Ingrese un email válido.
+                      </div>
+                    </div>
+                     
+                  </div>
+              </div>
+              <div class="col-sm-12">
+                  <div class="form-group mx-3 px-3">
+                      <input class="form-control" type="password" placeholder="Contraseña" ngModel required id="clave"
+                      name="clave" minlength="8">
+                    <div *ngIf="clave.invalid && (clave.dirty || clave.touched)" class="text-danger">
+                      <div *ngIf="clave.errors.required">
+                        Ingrese la contraseña
+                      </div>
+                    </div>
+
+                      
+                  </div>
+              </div>
+              <div class="col-sm-12">
+                  <div class="form-group mx-3 px-3 text-center">
+                      <input type="submit" value="Iniciar Sesión" class="btn float-center login_btn btn-dark">
+                  </div>
+
+              </div>
+              
+          </div>
+      </form>
+  </div>
+</div>

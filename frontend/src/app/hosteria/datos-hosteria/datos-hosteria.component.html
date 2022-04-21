@@ -1,0 +1,173 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+
+<div class="wrapper">
+    <!--MENU VERTICAL-->
+    <app-menul></app-menul>
+    <div class="main-panel">
+        <!--BARRA SUPERIOR-->
+        <app-header></app-header>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane active" id="home">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="card">
+                                    <div class="card-header card-header-toril">
+                                        <h4 class="card-title">Datos de la Hostería</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-8">
+                                                    <form class="form form-horizontal">
+                                                        <div class="form-body">
+                                                            <div class="row">
+                                                               
+                                                                    <div class="col-md-12" style="text-align:  center; font-weight: bold;">Representante Legal</div><br>
+                                                                    <div class="col-md-4">
+                                                                        <label>
+                                                                            Nombre:
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="col-md-8 form-group">
+                                                                        <div class="position-relative has-icon-left">
+                                                                            <input id="nombre" class="form-control"
+                                                                                type="text"
+                                                                                value={{this.dataHosteria[0].representanten}}
+                                                                                name="nombre" disabled>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-4">
+                                                                        <label>
+                                                                            Apellido:
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="col-md-8 form-group">
+                                                                        <div class="position-relative has-icon-left">
+                                                                            <input class="form-control input"
+                                                                                type="text"
+                                                                                value={{this.dataHosteria[0].representantea}}
+                                                                                id="apellido" name="apellido" disabled>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12" style="text-align:  center; font-weight: bold;">Datos de la Hostería</div><br>
+                                                                    <div class="col-md-4">
+                                                                        <label>
+                                                                            RUC:
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="col-md-8 form-group">
+                                                                        <div class="position-relative has-icon-left">
+                                                                            <input id="nombre" class="form-control"
+                                                                                type="text"
+                                                                                value={{this.dataHosteria[0].ruc}}
+                                                                                name="nombre" disabled>
+                                                                        </div>
+                                                                    </div>
+                                                                <div class="col-md-4">
+                                                                    <label>
+                                                                        Dirección:
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-md-8 form-group">
+                                                                    <div class="position-relative has-icon-left">
+                                                                        <input class="form-control" type="text"
+                                                                            type="text"
+                                                                            value={{this.dataHosteria[0].direccion}}
+                                                                            id="direccion" name="direccion" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>
+                                                                        Teléfono:
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-md-8 form-group">
+                                                                    <div class="position-relative has-icon-left">
+                                                                        <input class="form-control" type="number"
+                                                                            value={{this.dataHosteria[0].telefono}}
+                                                                            id="telefono" name="telefono"
+                                                                            pattern="[0-9]+" disabled>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-4">
+                                                                    <label>
+                                                                        Correo:
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-md-8 form-group">
+                                                                    <div class="position-relative has-icon-left">
+                                                                        <input class="form-control input" id="email"
+                                                                            type="email"
+                                                                            value={{this.dataHosteria[0].email}}
+                                                                            name="email" disabled>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-4">
+                                                                    <label>
+                                                                        IVA:
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-md-8 form-group">
+                                                                    <div class="position-relative has-icon-left">
+                                                                        <input class="form-control input" id="iva"
+                                                                            type="number"
+                                                                            value={{this.dataHosteria[0].iva}}
+                                                                            name="email" disabled>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12 d-flex justify-content-end">
+                                                                    <a class="btn float-right login_btn btn-dark"
+                                                                        value="Modificar"
+                                                                        href="hosteria/modificarHosteria/{{this.dataHosteria[0]._id}}">Modificar</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <!--FOOTER PIE DE PAGINA-->
+            <app-footer></app-footer>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>

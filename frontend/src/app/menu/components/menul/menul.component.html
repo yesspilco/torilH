@@ -1,0 +1,247 @@
+<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+
+
+    <div class="sidebar" data-color="purple" data-background-color="white"
+        data-image="../../../../assets/imagenes/sidebar-2.jpg">
+        <div class="logo">
+            <a href="/inicio" class="simple-text logo-normal">
+                <img src="../../../../assets/imagenes/logo.png" height="50px">
+            </a>
+        </div>
+
+        <!--Menu vertical-->
+        <ng-container *ngIf="this.tipo==1">
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a href="/inicio" class="nav-link">
+                        <i class="icon ion-md-apps"></i>
+                        <p>Menú</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/perfil/">
+                        <i class="icon ion-md-contact"></i>
+                        <p>Mi Perfil</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/hosteria/">
+                        <i class = "icon ion-md-cog" > </i >
+                        <p>Hostería</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/clientes/listadocli">
+                        <i class="icon ion-md-contacts"></i>
+                        <p>Clientes</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/empleados/listadoempl">
+                        <i class="icon ion-md-people"></i>
+                        <p>Empleados</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/tipos/listartip">
+                        <i class="icon ion-md-home"></i>
+                        <p>Tipos Cabañas</p>
+                    </a>
+                </li>
+
+                <li class="nav-item" data-toggle="collapse" data-target="#dem">
+                    <a class="nav-link" >
+                        <i class="icon ion-md-contract"></i>
+                        <p>Servicios</p>
+                    </a>
+                    <div class="collapse"  id="dem">
+                        <a class="nav-link" href="/cabanias/listadocab">
+                            <i class="icon ion-md-bed"></i>
+                            <p>Cabañas</p>
+                        </a>
+                        <a class="nav-link" href="/salones/listadosal">
+                            <i class="icon ion-md-business"></i>
+                            <p>Salones</p>
+                        </a>
+                        <a class="nav-link" href="/otros/listadosotro">
+                            <i class="icon ion-md-sync"></i>
+                            <p>Otros Servicios</p>
+                        </a>
+                    </div>
+                </li>
+
+
+
+                <li class="nav-item" data-toggle="collapse" data-target="#demo">
+                    <a class="nav-link" >
+                        <i class="icon ion-md-checkmark"></i>
+                        <p>Reservar</p>
+                    </a>
+                    <div class="collapse"  id="demo">
+                        <a class="nav-link" href="/reservaciones/reservar">
+                            <i class="icon ion-md-bed"></i>
+                            <p>Cabañas</p>
+                        </a>
+                        <a class="nav-link" href="/reservaciones/reservarsalones">
+                            <i class="icon ion-md-business"></i>
+                            <p>Salones</p>
+                        </a>
+                    </div>
+                </li>
+
+
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="/reservaciones/listadoreservaciones">
+                        <i class="icon ion-md-checkbox"></i>
+                        <p>Reservaciones</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/facturas">
+                        <i class="icon ion-md-clipboard"></i>
+                        <p>Facturación</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/reporte">
+                        <i class="icon ion-md-stats"></i>
+                        <p>Reportes</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="this.tipo==2">
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a href="/inicio" class="nav-link">
+                        <i class="icon ion-md-apps"></i>
+                        <p>Menú</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/perfil/">
+                        <i class="icon ion-md-contact"></i>
+                        <p>Mi Perfil</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/clientes/listadocli">
+                        <i class="icon ion-md-contacts"></i>
+                        <p>Clientes</p>
+                    </a>
+                </li>
+
+                <li class="nav-item" data-toggle="collapse" data-target="#dem">
+                    <a class="nav-link" >
+                        <i class="icon ion-md-contract"></i>
+                        <p>Servicios</p>
+                    </a>
+                    <div class="collapse"  id="dem">
+                        <a class="nav-link" href="/cabanias/listadocab">
+                            <i class="icon ion-md-bed"></i>
+                            <p>Cabañas</p>
+                        </a>
+                        <a class="nav-link" href="/salones/listadosal">
+                            <i class="icon ion-md-business"></i>
+                            <p>Salones</p>
+                        </a>
+                        <a class="nav-link" href="/otros/listadosotro">
+                            <i class="icon ion-md-sync"></i>
+                            <p>Otros Servicios</p>
+                        </a>
+                    </div>
+                </li>
+               
+                <li class="nav-item" data-toggle="collapse" data-target="#demo">
+                    <a class="nav-link" >
+                        <i class="icon ion-md-checkmark"></i>
+                        <p>Reservar</p>
+                    </a>
+                    <div class="collapse"  id="demo">
+                        <a class="nav-link" href="/reservaciones/reservar">
+                            <i class="icon ion-md-bed"></i>
+                            <p>Cabañas</p>
+                        </a>
+                        <a class="nav-link" href="/reservaciones/reservarsalones">
+                            <i class="icon ion-md-business"></i>
+                            <p>Salones</p>
+                        </a>
+                    </div>
+                </li>
+
+
+
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="/reservaciones/listadoreservaciones">
+                        <i class="icon ion-md-checkbox"></i>
+                        <p>Reservaciones</p>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="/inicio">
+                        <i class="icon ion-md-clipboard"></i>
+                        <p>Facturación</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/reportes">
+                        <i class="icon ion-md-stats"></i>
+                        <p>Reportes</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="this.tipo==3">
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a href="/inicio" class="nav-link">
+                        <i class="icon ion-md-apps"></i>
+                        <p>Menú</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/perfil/">
+                        <i class="icon ion-md-contact"></i>
+                        <p>Mi Perfil</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/reservaciones/reservar">
+                        <i class="icon ion-md-checkmark"></i>
+                        <p>Reservar</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/reservaciones/misreservaciones">
+                        <i class="icon ion-md-checkbox"></i>
+                        <p>Mis Reservaciones</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/facturas/misFacturas">
+                        <i class="icon ion-md-copy"></i>
+                        <p>Mis Facturas</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </ng-container>
+
+    </div>
+
+        
+
+        
+
+
+   

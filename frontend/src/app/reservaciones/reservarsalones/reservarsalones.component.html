@@ -1,0 +1,541 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+
+<div class="wrapper">
+    <!--MENU VERTICAL-->
+    <app-menul></app-menul>
+    <div class="main-panel">
+        <!--BARRA SUPERIOR-->
+        <app-header></app-header>
+        <div class="content">
+            <div class="container-fluid">
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-1">
+
+                        </div>
+                        <div class="col-lg-10">
+                            <ul class="nav nav-pills justify-content-end">
+                                <li class="nav-item">
+                                    <a class="active" id="home-tab" data-toggle="tab" href="#home">Reservar
+
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="profile-tab" data-toggle="tab" href="#profile">
+                                        <i class="icon ion-md-person-add"></i> Mis reservaciones
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="profile-tab" data-toggle="tab" href="#registro">
+                                        <i class="icon ion-md-person-add"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="tab-content" id="myTabContent" style="height:auto;"><br>
+                        <div class="tab-pane active" id="home">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="card">
+                                    <div class="card-header card-header-toril">
+                                        <h4 class="card-title">Reservar</h4>
+
+                                    </div>
+
+
+                                    <ng-container>
+                                        <div class="card-body table-responsive">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label class="float-right">
+                                                        CLIENTE:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input id="cedula" class="form-control" type="text"
+                                                        placeholder="Cédula" required ngModel name="cedula">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input class="btn login_btn btn-dark" type="submit" value="Buscar"
+                                                        (click)="buscarCliente()">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+
+                                    <ng-container *ngIf="this.bandera==1">
+                                        <div class="card-body table-responsive">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label class="float-right">
+                                                        CÉDULA:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="float-right">
+                                                        {{this.dataCliente[0].cedula}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label class="float-right">
+                                                        NOMBRE:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="float-right">
+                                                        {{this.dataCliente[0].nombre}} {{this.dataCliente[0].apellido}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </ng-container>
+
+                                    <div class="card-body table-responsive">
+                                        <div class="row">
+
+                                            <div class="col-md-2">
+                                                <label class="float-right">
+                                                    Fecha Ingreso:
+                                                </label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="date" name="fechai" id="fechai" class="form-control">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="float-right">
+                                                    Fecha Salida:
+                                                </label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="date" name="fechaf" id="fechaf" class="form-control">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input class="btn login_btn btn-dark" type="submit" value="Buscar"
+                                                    (click)="buscarPorFechas()">
+                                            </div>
+                                        </div>
+
+                                    </div><br>
+
+                                    <div class="col-sm-12">
+                                        <div *ngIf="msj1"
+                                            class="alert alert-danger alert-dismissible fade show text-center"
+                                            role="alert">
+                                            <strong>Aviso!</strong> {{msj1}}...
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <mdb-carousel class="carousel-multi-item multi-animation a"
+                                        [type]="'carousel-multi-item'" [animation]="'slide'">
+                                        <mdb-carousel-item *ngFor="let item of slides; let i = index">
+                                            <div class="col-md-6" *ngFor="let card of item; let cardIndex = index"
+                                                style="float: left;">
+                                                <mdb-card class="my-1">
+                                                    <mdb-card-img [src]="card.imagen" alt="{{card.nombre}}"
+                                                        style="height: 300px;">
+                                                    </mdb-card-img>
+                                                    <mdb-card-body>
+                                                        <mdb-card-title>
+                                                            <h4>{{card.nombre}}</h4>
+                                                        </mdb-card-title>
+                                                        <p>Descripción: {{card.descripcion}}</p>
+                                                        <p>Capacidad: {{card.capacidad}}</p>
+
+                                                        <ng-container>
+                                                            <input class="btn login_btn btn-dark" id="btn{{card._id}}"
+                                                                style='cursor:pointer;' type='button' value='Reservar'
+                                                                style='width:50% ;font-size: 12px;  color: rgb(241, 241, 239);font-weight: bold;'
+                                                                (click)="AgregarServicio(card._id,card.nombre,card.idsalon,card.precio,card.capacidad)">
+                                                        </ng-container>
+
+
+                                                    </mdb-card-body>
+                                                </mdb-card>
+                                            </div>
+                                        </mdb-carousel-item>
+                                    </mdb-carousel>
+
+
+                                    <br>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="tab-pane" id="profile">
+                            <div class="card">
+                                <div class="card-header card-header-toril">
+                                    <h4 class="card-title">Mis reservaciones</h4>
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <div class="row">
+                                        <fieldset
+                                            style="height:auto ;width: 90%;height: auto; padding: 0px;float: left;margin-left:5%">
+                                            <fieldset
+                                                style="max-height:612px ;width: 100%;height: 612px; padding: 1px;float: left;background-color: #fdfdf9;border-radius: 3px;">
+                                                <fieldset
+                                                    style="height:40px ;width: 100%; padding: 0px;color: ghostwhite;font-weight: bold;padding: 0px;">
+
+                                                    <div class="card-body table-responsive">
+                                                        <div
+                                                            style="font-weight:bold; font-size:16px; color: rgb(35, 34, 33);">
+                                                            Reservación para: {{this.FechaInicio | date: 'dd/MM/yyyy'}}
+                                                            - {{this.FechaFin | date: 'dd/MM/yyyy' }}
+                                                        </div>
+                                                        <div
+                                                            style="font-weight:bold; font-size:16px; color: rgb(35, 34, 33);">
+                                                            Días Reservados: {{this.dias}}
+                                                        </div>
+
+                                                        <table class="table table-hover">
+                                                            <thead class="text-toril">
+                                                                <th>N°</th>
+                                                                <th>Descripcion</th>
+                                                                <th>Cantidad</th>
+                                                                <th>Precio</th>
+                                                                <th>Dias</th>
+                                                                <th>Subtotal</th>
+                                                                <th>--</th>
+                                                            </thead>
+                                                            <tbody>
+                                                                <ng-container
+                                                                    *ngFor="let reserva of dataReserva; index as i">
+                                                                    <tr>
+                                                                        <td>{{i+1}}</td>
+                                                                        <td>{{reserva.nombre}}</td>
+                                                                        <td>{{reserva.huespedes}}</td>
+                                                                        <td>$ {{reserva.precio}}</td>
+                                                                        <td>{{reserva.dias}}</td>
+                                                                        <td>$ {{reserva.subtotal}}</td>
+
+                                                                        <td class="text-rigth">
+                                                                            <button class="btn btn-default"
+                                                                                title="Quitar"
+                                                                                (click)="eliminar(reserva._id)">
+                                                                                <i class="icon ion-md-close"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                </ng-container>
+                                                            </tbody>
+                                                        </table>
+                                                       
+                                                        <div class="row">
+                                                            <div class="col-md-12"
+                                                                style="text-align: right; padding-right: 7%;">
+
+                                                                <span style="color: black;">Añadir Servicios</span>
+                                                                <button class="btn co" value="Visualizar"
+                                                                    (click)="openScroll(contenido)">
+                                                                    <i class="icon ion-md-add"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div style="max-height: 480px;">
+                                                        <ng-template #contenido let-modal >
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Otros Servicios </h4>
+                                                                <button class="close" aria-label="close" type="button"
+                                                                    (click)="modal.dismiss()">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body table-responsive">
+                                                                <table class="table table-hover ">
+                                                                    <thead class="text-toril">                                                                        
+                                                                        <th>Nombre</th>
+                                                                        <th>Descripcion</th>
+                                                                        <th>Precio/Unidad</th>
+                                                                        <th>Cantidad</th>
+                                                                        <th><i class = "icon ion-md-checkbox"></i></th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <ng-container
+                                                                            *ngFor="let otros of dataOtros;index as i">
+                                                                            <tr>
+                                                                                <td>{{otros.nombre}}</td>
+                                                                                <td>{{otros.descripcion}}</td>
+                                                                                <td>{{otros.precio}}</td>
+                                                                                <td><input type="text" id={{otros._idservicio}} class="form-control" style="width:80px"></td>
+                                                                                <td><input value="{{otros._id}}" type="checkbox" (change)="AgregarOtro(otros._idservicio,otros.nombre,otros._idotro,otros.precio)"></td>
+                                                                            </tr>
+                                                                        </ng-container>
+                                                                    </tbody>
+                                                                </table>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn login_btn btn-dark"
+                                                                    (click)="modal.close()">Ok!</button>
+                                                            </div>
+                                                        </ng-template>
+                                                    </div>
+                                                    <div class="col-10 d-flex justify-content-end btn btn-default">
+                                                        <label style="color: brown; font-weight: bold;">VALOR
+                                                            TOTAL:--</label>
+                                                        <label style="color: brown;font-weight: bold;"> $
+                                                            {{this.total}}--
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-2 d-flex"></div>
+                                                        <div class="col-10 d-flex">
+                                                            <textarea class="form-control" id="idobservacion" name="observacion" maxlength="200px" style="width: 100%;">Observación:</textarea>
+                                                        </div>
+                                                        <div class="col-12 d-flex justify-content-center"
+                                                            style="color: rgb(8, 8, 8);">
+                                                            Verifique los datos antes de confirmar la reservación
+                                                        </div>
+                                                        <div class="col-12 d-flex justify-content-end">
+                                                            <button class="btn float-right login_btn btn-dark"
+                                                            (click)="Reservar()" value="Confirmar reserva">Confirmar
+                                                                Reserva</button>
+                                                        </div>
+                                                    </div>
+
+                                                </fieldset>
+                                            </fieldset>
+                                        </fieldset>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="registro">
+                            <div class="card">
+                                <div class="card-header card-header-toril">
+                                    <h4 class="card-title">Registro de Clientes</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-8">
+                                                <hr>
+                                                <form #frmRegister="ngForm" class="form form-horizontal"
+                                                    (ngSubmit)="onRegister(frmRegister)">
+                                                    <div class="form-body">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <label>
+                                                                    Cédula:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <div class="position-relative has-icon-left">
+                                                                    <input id="cedula" class="form-control" type="text"
+                                                                        placeholder="Cédula" pattern="[0-9]+" required
+                                                                        ngModel name="cedula" #cedula="ngModel">
+                                                                    <div *ngIf="cedula.invalid && (cedula.dirty || cedula.touched)"
+                                                                        class="text-danger">
+                                                                        <div *ngIf="cedula.errors.required">
+                                                                            Ingrese la cédula
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>
+                                                                    Nombre:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <div class="position-relative has-icon-left">
+                                                                    <input id="nombre" class="form-control" type="text"
+                                                                        placeholder="Nombre" required ngModel
+                                                                        name="nombre" #nombre="ngModel">
+                                                                    <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+                                                                        class="text-danger">
+                                                                        <div *ngIf="nombre.errors.required">
+                                                                            Ingrese el nombre
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>
+                                                                    Apellido:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <div class="position-relative has-icon-left">
+                                                                    <input class="form-control input" type="text"
+                                                                        placeholder="Apellido" required ngModel
+                                                                        id="apellido" name="apellido"
+                                                                        #apellido="ngModel">
+                                                                    <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)"
+                                                                        class="text-danger">
+                                                                        <div *ngIf="apellido.errors.required">
+                                                                            Ingrese el apellido
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>
+                                                                    Provincia:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <div class="position-relative has-icon-left">
+                                                                    <select required class="custom-select"
+                                                                        id="provincia" name="provincia" ngModel
+                                                                        #provincia='ngModel'>
+                                                                        <option value="" disabled>Seleccione una
+                                                                            provincia</option>
+                                                                        <option *ngFor="let provincia of dataProvincias"
+                                                                            [ngValue]="provincia.nombreProvincia">
+                                                                            {{ provincia.nombreProvincia }}
+                                                                        </option>
+                                                                    </select>
+                                                                    <div *ngIf="provincia.invalid && (provincia.dirty || provincia.touched)"
+                                                                        class="text-danger">
+                                                                        <div *ngIf="provicnia.errors.required">
+                                                                            Seleccione la provincia
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>
+                                                                    Dirección:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <div class="position-relative has-icon-left">
+                                                                    <input class="form-control" type="text" type="text"
+                                                                        placeholder="Direccion" ngModel required
+                                                                        id="direccion" name="direccion"
+                                                                        #direccion="ngModel">
+                                                                    <div *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)"
+                                                                        class="text-danger">
+                                                                        <div *ngIf="direccion.errors.required">
+                                                                            Ingrese la dirección
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>
+                                                                    Teléfono:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <div class="position-relative has-icon-left">
+                                                                    <input class="form-control" type="text"
+                                                                        placeholder="Telefono" ngModel required
+                                                                        id="telefono" name="telefono" pattern="[0-9]+"
+                                                                        #telefono="ngModel">
+                                                                    <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)"
+                                                                        class="text-danger">
+                                                                        <div *ngIf="telefono.errors.required">
+                                                                            Ingrese el número telefónico
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <label>
+                                                                    Correo:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <div class="position-relative has-icon-left">
+                                                                    <input class="form-control input" id="email"
+                                                                        type="email" placeholder="Correo" required email
+                                                                        ngModel name="email" #email="ngModel">
+                                                                    <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                                                                        class="text-danger">
+                                                                        <div *ngIf="email.errors.required">
+                                                                            Ingrese el email.
+                                                                        </div>
+                                                                        <div *ngIf="email.errors.email">
+                                                                            Ingrese un email válido.
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>
+                                                                    Contraseña:
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <div class="position-relative has-icon-left">
+                                                                    <input class="form-control" type="password"
+                                                                        placeholder="Contraseña" ngModel required
+                                                                        id="clave" name="clave" minlength="8"
+                                                                        #clave="ngModel">
+                                                                    <div *ngIf="clave.invalid && (clave.dirty || clave.touched)"
+                                                                        class="text-danger">
+                                                                        <div *ngIf="clave.errors.required">
+                                                                            Ingrese la contraseña
+                                                                        </div>
+                                                                        <div *ngIf="clave.errors.minlength">
+                                                                            La contraseña debe tener mínino 8
+                                                                            caracteres
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 d-flex justify-content-end">
+                                                                <input class="btn float-right login_btn btn-dark"
+                                                                    type="submit" value="Registrar"
+                                                                    [disabled]="!frmRegister.valid">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+        <!--FOOTER PIE DE PAGINA-->
+        <app-footer></app-footer>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>

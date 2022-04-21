@@ -1,0 +1,164 @@
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+
+<div class="d-flex">
+  <!--<app-menul></app-menul> MENU LATERAL-->
+  <div class="w-100">
+
+    <!--<app-barra></app-barra> Barra superior-->
+
+
+    <div id="content">
+      <section class="py-3">
+        <div class="container">
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Registro de Clientes</h3>
+            </div>
+            <div class="card-content">
+              <div class="card-body">
+                <div class="row justify-content-center">
+                  <div class="col-md-8">
+                    <form #frmRegister="ngForm" class="form form-horizontal" (ngSubmit)="onRegister(frmRegister)">
+                      <div class="form-body">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <label>
+                              Nombre:
+                            </label>
+                          </div>
+                          <div class="col-md-8 form-group">
+                            <div class="position-relative has-icon-left">
+                              <input id="nombre" class="form-control" type="text" placeholder="Nombre" required ngModel
+                                name="nombre" #nombre="ngModel">
+                              <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="text-danger">
+                                <div *ngIf="nombre.errors.required">
+                                  Ingrese el nombre
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <label>
+                              Apellido:
+                            </label>
+                          </div>
+                          <div class="col-md-8 form-group">
+                            <div class="position-relative has-icon-left">
+                              <input class="form-control input" type="text" placeholder="Apellido" required ngModel
+                                id="apellido" name="apellido" #apellido="ngModel">
+                              <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)" class="text-danger">
+                                <div *ngIf="apellido.errors.required">
+                                  Ingrese el apellido
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <label>
+                              Dirección:
+                            </label>
+                          </div>
+                          <div class="col-md-8 form-group">
+                            <div class="position-relative has-icon-left">
+                              <input class="form-control" type="text" type="text" placeholder="Direccion" ngModel
+                                required id="direccion" name="direccion" #direccion="ngModel">
+                              <div *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)"
+                                class="text-danger">
+                                <div *ngIf="direccion.errors.required">
+                                  Ingrese la dirección
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <label>
+                              Teléfono:
+                            </label>
+                          </div>
+                          <div class="col-md-8 form-group">
+                            <div class="position-relative has-icon-left">
+                              <input class="form-control" type="number" placeholder="Telefono" ngModel required
+                                id="telefono" name="telefono" pattern="[0-9]+" #telefono="ngModel">
+                              <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)" class="text-danger">
+                                <div *ngIf="telefono.errors.required">
+                                  Ingrese el número telefónico
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <label>
+                              Correo:
+                            </label>
+                          </div>
+                          <div class="col-md-8 form-group">
+                            <div class="position-relative has-icon-left">
+                              <input class="form-control input" id="email" type="email" placeholder="Correo" required
+                                email ngModel name="email" #email="ngModel">
+                              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                                <div *ngIf="email.errors.required">
+                                  Ingrese el email.
+                                </div>
+                                <div *ngIf="email.errors.email">
+                                  Ingrese un email válido.
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <label>
+                              Contraseña:
+                            </label>
+                          </div>
+                          <div class="col-md-8 form-group">
+                            <div class="position-relative has-icon-left">
+                              <input class="form-control" type="password" placeholder="Contraseña" ngModel required
+                                id="clave" name="clave" minlength="8" #clave="ngModel">
+                              <div *ngIf="clave.invalid && (clave.dirty || clave.touched)" class="text-danger">
+                                <div *ngIf="clave.errors.required">
+                                  Ingrese la contraseña
+                                </div>
+                                <div *ngIf="clave.errors.minlength">
+                                  La contraseña debe tener mínino 8 caracteres
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 d-flex justify-content-end">
+                            <input class="btn float-right login_btn btn-dark" type="submit" value="Registrar"
+                              [disabled]="!frmRegister.valid">
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </section>
+    </div>
+
+
+  </div>
+</div>
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+  integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+  integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

@@ -1,0 +1,178 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+
+<div class="wrapper">
+  <!--MENU VERTICAL-->
+  <app-menul></app-menul>
+  <div class="main-panel">
+    <!--BARRA SUPERIOR-->
+    <app-header></app-header>
+    <div class="content">
+      <div class="container-fluid">
+
+        <div class="col-lg-12 col-md-12">
+          <div class="card">
+            <div class="card-header card-header-toril">
+              <h4 class="card-title">Modificar Empleado</h4>
+
+            </div>
+            <div class="card-content">
+              <div class="card-body">
+                <div class="row justify-content-center">
+                  <div class="col-md-8">
+                    <div class="card-body table-responsive">
+                      <form #frmModificar="ngForm" class="form form-horizontal" (ngSubmit)="modificar(frmModificar)">
+                        <ng-container *ngFor="let empleado of dataEmpleado">
+                          <div class="form-body">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label>
+                                  Cédula:
+                                </label>
+                              </div>
+                              <div class="col-md-8 form-group">
+                                <div class="position-relative has-icon-left">
+                                  <input id="cedula" class="form-control" type="text" ngModel={{empleado.cedula}}  disabled ngModel
+                                  name="cedula" #cedula="ngModel">
+                                </div>                          
+                              </div>
+                              <div class="col-md-4">
+                                <label>
+                                  Nombre:
+                                </label>
+                              </div>
+                              <div class="col-md-8 form-group">
+                                <div class="position-relative has-icon-left">
+                                  <input id="nombre" class="form-control" type="text" required ngModel name="nombre"
+                                    #nombre="ngModel" ngModel={{empleado.nombre}}>
+                                  <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="text-danger">
+                                    <div *ngIf="nombre.errors.required">
+                                      Ingrese el nombre
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <label>
+                                  Apellido:
+                                </label>
+                              </div>
+                              <div class="col-md-8 form-group">
+                                <div class="position-relative has-icon-left">
+                                  <input class="form-control input" type="text" ngModel={{empleado.apellido}} required
+                                    ngModel id="apellido" name="apellido" #apellido="ngModel">
+                                  <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)"
+                                    class="text-danger">
+                                    <div *ngIf="apellido.errors.required">
+                                      Ingrese el apellido
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <label>
+                                  Dirección:
+                                </label>
+                              </div>
+                              <div class="col-md-8 form-group">
+                                <div class="position-relative has-icon-left">
+                                  <input class="form-control" type="text" type="text" ngModel={{empleado.direccion}}
+                                    ngModel required id="direccion" name="direccion" #direccion="ngModel">
+                                  <div *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)"
+                                    class="text-danger">
+                                    <div *ngIf="direccion.errors.required">
+                                      Ingrese la dirección
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <label>
+                                  Teléfono:
+                                </label>
+                              </div>
+                              <div class="col-md-8 form-group">
+                                <div class="position-relative has-icon-left">
+                                  <input class="form-control" type="number" ngModel={{empleado.telefono}} ngModel
+                                    required id="telefono" name="telefono" pattern="[0-9]+" #telefono="ngModel">
+                                  <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)"
+                                    class="text-danger">
+                                    <div *ngIf="telefono.errors.required">
+                                      Ingrese el número telefónico
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <label>
+                                  Tipo:
+                                </label>
+                              </div>
+                              <div class="col-md-8 form-group">
+                                <div class="position-relative has-icon-left">
+                                  <select class="form-control" id="rol" ngModel name="rol" #rol="ngModel" required selected={{empleado.rol}}>
+                                    <option value="" disabled>Seleccione un tipo</option>
+                                    <option value="1" *ngIf="empleado.rol==1 selected">Administrador</option>
+                                    <option value="2">Empleado</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <label>
+                                  Correo:
+                                </label>
+                              </div>
+                              <div class="col-md-8 form-group">
+                                <div class="position-relative has-icon-left">
+                                  <input class="form-control input" id="email" type="email" ngModel={{empleado.email}}
+                                    required email ngModel name="email" #email="ngModel">
+                                  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                                    <div *ngIf="email.errors.required">
+                                      Ingrese el email.
+                                    </div>
+                                    <div *ngIf="email.errors.email">
+                                      Ingrese un email válido.
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-12 d-flex justify-content-end">
+                                <input class="btn float-right login_btn btn-dark" type="submit" value="Guardar Cambios">
+                              </div>
+                            </div>
+                          </div>
+                        </ng-container>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!--FOOTER PIE DE PAGINA-->
+      <app-footer></app-footer>
+
+
+    </div>
+
+  </div>
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>

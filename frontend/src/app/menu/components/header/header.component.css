@@ -1,0 +1,19 @@
+
+.nav-item{
+    padding:2px;
+    margin-left: 7px;
+}
+
+.barra{
+    background-color:#641E16;
+}
+
+.slogan{
+    font-weight: bold;
+    font-style: italic;
+    color: aliceblue
+}
+
+.user{
+    color: aliceblue;
+}

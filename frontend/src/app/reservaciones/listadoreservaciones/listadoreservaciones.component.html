@@ -1,0 +1,351 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+
+<div class="wrapper">
+    <!--MENU VERTICAL-->
+    <app-menul></app-menul>
+    <div class="main-panel">
+        <!--BARRA SUPERIOR-->
+        <app-header></app-header>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-3">
+                        </div>
+
+                        <div class="col-lg-6">
+                            <ul class="nav nav-pills justify-content-end">
+                                <li class="nav-item">
+                                    <a class="active" id="home-tab" data-toggle="tab" href="#home">Pendientes
+
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="profile-tab" data-toggle="tab" href="#profile">Aceptadas
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="profile-tab" data-toggle="tab" href="#otro"> Canceladas
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="profile-tab" data-toggle="tab" href="#otro1"> Realizadas
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+                    <div class="tab-content" id="myTabContent"><br>
+
+                        <div class="tab-pane active" id="home">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="search-text" name="searchText"
+                                        aria-describedby="search-text" [(ngModel)]="searchText"
+                                        placeholder="Dato a buscar" autofocus>
+
+                                </div>
+                                <div class="card">
+
+                                    <div class="card-header card-header-toril">
+                                        <h4 class="card-title">Reservaciones Pendientes</h4>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div *ngIf="msj1"
+                                            class="alert alert-danger alert-dismissible fade show text-center"
+                                            role="alert">
+                                            <strong>Aviso!</strong> {{msj1}}...
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body table-responsive" *ngIf="this.dataPendientes!=null">
+                                        <table class="table table-hover">
+                                            <thead class="text-toril">
+                                                <th>#</th>
+                                                <th>Cédula</th>
+                                                <th>Nombre</th>
+                                                <th>Fecha Registro</th>
+                                                <th>Estado</th>
+                                                <th>Total $</th>
+                                                <th>Detalles</th>
+                                            </thead>
+                                            <tbody>
+                                                <ng-container *ngFor="let reservap of dataPendientes| filter: searchText; index as i">
+                                                    <tr>
+                                                        <td scope="row">{{i+1}}</td>
+                                                        <td>{{reservap.cedula}}</td>
+                                                        <td>{{reservap.nombre}} {{reservap.apellido}}</td>
+                                                        <td>{{reservap.fechaR | date: 'dd/MM/yyyy'}}</td>
+                                                        <td>{{reservap.estado}}</td>
+                                                        <td class="float-right">{{reservap.total.toFixed(2)}}</td>
+                                                        <td class="text-rigth">
+                                                            <a class="btn btn-default" title="Ver Detalles"
+                                                                href="reservaciones/detallereservacion/{{reservap.idreserva}}">
+                                                                <i class="icon ion-md-copy"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </ng-container>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="col-sm-12">
+                                            <div *ngIf="msj1"
+                                                class="alert alert-danger alert-dismissible fade show text-center"
+                                                role="alert">
+                                                <strong>Aviso!</strong> {{msj1}}...
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="profile">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="search-text1" name="searchText1"
+                                        aria-describedby="search-text1" [(ngModel)]="searchText1"
+                                        placeholder="Dato a buscar" autofocus>
+
+                                </div>
+                                <div class="card">
+                                    <div class="card-header card-header-toril">
+                                        <h4 class="card-title">Reservaciones Aceptadas</h4>
+                                    </div>
+                                    <div class="card-body table-responsive" *ngIf="this.dataAceptadas.length>0">
+                                        <table class="table table-hover">
+                                            <thead class="text-toril">
+                                                <th>#</th>
+                                                <th>Cédula</th>
+                                                <th>Nombre</th>
+                                                <th>Fecha Registro</th>                                               
+                                                <th>Estado</th>
+                                                <th>Total $</th>
+                                                <th>Detalles</th>
+                                            </thead>
+                                            <tbody>
+                                                <ng-container *ngFor="let reservaA of dataAceptadas| filter: searchText1 ; index as i">
+                                                    <tr>
+                                                        <td scope="row">{{i+1}}</td>
+                                                        <td>{{reservaA.cedula}}</td>
+                                                        <td>{{reservaA.nombre}} {{reservaA.apellido}}</td>
+                                                        <td>{{reservaA.fechaR | date: 'dd/MM/yyyy'}}</td>
+                                                        <td>{{reservaA.estado}}</td>
+                                                        <td>{{reservaA.total.toFixed(2)}}</td>
+                                                        <td class="text-rigth">
+                                                            <a class="btn btn-default" title="Ver Detalles"
+                                                                href="reservaciones/detallereservacion/{{reservaA.idreserva}}">
+                                                                <i class="icon ion-md-copy"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </ng-container>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="col-sm-12">
+                                            <div *ngIf="msj1"
+                                                class="alert alert-danger alert-dismissible fade show text-center"
+                                                role="alert">
+                                                <strong>Aviso!</strong> {{msj1}}...
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane active" id="otro">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="search-text2" name="searchText2"
+                                        aria-describedby="search-text2" [(ngModel)]="searchText2"
+                                        placeholder="Dato a buscar" autofocus>
+
+                                </div>
+                                <div class="card">
+
+                                    <div class="card-header card-header-toril">
+                                        <h4 class="card-title">Reservaciones Canceladas</h4>
+                                    </div>
+                                   
+                                    <div class="card-body table-responsive" *ngIf="this.dataCanceladas.length>0">
+                                        <table class="table table-hover">
+                                            <thead class="text-toril">
+                                                <th>#</th>
+                                                <th>Cédula</th>
+                                                <th>Nombre</th>
+                                                <th>Fecha Registro</th>
+                                                <th>Estado</th>
+                                                <th>Total $</th>
+                                                <th>Detalles</th>
+                                            </thead>
+                                            <tbody>
+                                                <ng-container *ngFor="let reservac of dataCanceladas| filter: searchText2; index as i">
+                                                    <tr>
+                                                        <td scope="row">{{i+1}}</td>
+                                                        <td>{{reservac.cedula}}</td>
+                                                        <td>{{reservac.nombre}} {{reservac.apellido}}</td>
+                                                        <td>{{reservac.fechaR | date: 'dd/MM/yyyy'}}</td>
+                                                        <td>{{reservac.estado}}</td>
+                                                        <td>{{reservac.total.toFixed(2)}}</td>
+                                                        <td class="text-rigth">
+                                                            <a class="btn btn-default" title="Ver Detalles"
+                                                                href="reservaciones/detallereservacion/{{reservac.idreserva}}">
+                                                                <i class="icon ion-md-copy"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </ng-container>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="col-sm-12">
+                                            <div *ngIf="msj1"
+                                                class="alert alert-danger alert-dismissible fade show text-center"
+                                                role="alert">
+                                                <strong>Aviso!</strong> {{msj1}}...
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div *ngIf="msj1"
+                                            class="alert alert-danger alert-dismissible fade show text-center"
+                                            role="alert">
+                                            <strong>Aviso!</strong> {{msj1}}...
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane active" id="otro1">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="search-text2" name="searchText3"
+                                        aria-describedby="search-text3" [(ngModel)]="searchText3"
+                                        placeholder="Dato a buscar" autofocus>
+
+                                </div>
+                                <div class="card">
+
+                                    <div class="card-header card-header-toril">
+                                        <h4 class="card-title">Reservaciones Realizadas</h4>
+                                    </div>
+                                   
+                                    <div class="card-body table-responsive" *ngIf="this.dataRealizadas.length>0">
+                                        <table class="table table-hover">
+                                            <thead class="text-toril">
+                                                <th>#</th>
+                                                <th>Cédula</th>
+                                                <th>Nombre</th>
+                                                <th>Fecha Registro</th>
+                                                <th>Estado</th>
+                                                <th>Total $</th>
+                                                <th>Detalles</th>
+                                            </thead>
+                                            <tbody>
+                                                <ng-container *ngFor="let reservac of dataRealizadas| filter: searchText3; index as i">
+                                                    <tr>
+                                                        <td scope="row">{{i+1}}</td>
+                                                        <td>{{reservac.cedula}}</td>
+                                                        <td>{{reservac.nombre}} {{reservac.apellido}}</td>
+                                                        <td>{{reservac.fechaR | date: 'dd/MM/yyyy'}}</td>
+                                                        <td>{{reservac.estado}}</td>
+                                                        <td>{{reservac.total.toFixed(2)}}</td>
+                                                        <td class="text-rigth">
+                                                            <a class="btn btn-default" title="Ver Detalles"
+                                                                href="reservaciones/detallereservacion/{{reservac.idreserva}}">
+                                                                <i class="icon ion-md-copy"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </ng-container>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="col-sm-12">
+                                            <div *ngIf="msj1"
+                                                class="alert alert-danger alert-dismissible fade show text-center"
+                                                role="alert">
+                                                <strong>Aviso!</strong> {{msj1}}...
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div *ngIf="msj1"
+                                            class="alert alert-danger alert-dismissible fade show text-center"
+                                            role="alert">
+                                            <strong>Aviso!</strong> {{msj1}}...
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <!--FOOTER PIE DE PAGINA-->
+            <app-footer></app-footer>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>

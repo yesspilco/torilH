@@ -1,0 +1,311 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+
+<div class="wrapper">
+    <!--MENU VERTICAL-->
+    <app-menul></app-menul>
+    <div class="main-panel">
+        <!--BARRA SUPERIOR-->
+        <app-header></app-header>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="container">
+
+
+
+                    <div class="tab-content" id="myTabContent"><br>
+                        <div class="tab-pane active">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="card" id="htmlData">
+
+                                    <div class="row card-body" style="padding-top:2.5%;float: left;margin-left:5%">
+                                        <div class="col-sm-5">
+                                            <img src="../../../../assets/imagenes/logo.png" height="75px">
+                                        </div>
+                                        <div class="col-sm-7 center">
+                                            <p class="encabezado">HOSTERIA "EL TORIL" </p>
+                                            <p class="encabezado1">RUC: {{this.ruc}}<br>
+                                                Direccion: Km 1 vía a Penipe<br>
+                                                Teléfono: (03) 237 4440 -- {{this.dataHosteria[0].telefono}}<br> <br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div style="float: left;margin-left:7%">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label class="caja" style="font-weight: bold;">Cédula: </label>
+                                                <label class="caja"> {{this.dataReserva[0].cedula}}</label>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label class="caja" style="font-weight: bold;">Cliente: </label>
+                                                <label class="caja">{{this.dataReserva[0].nombre}}
+                                                    {{this.dataReserva[0].apellido}}</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="caja" style="font-weight: bold;">Dirección:</label>
+                                                <label class="caja"> {{this.dataReserva[0].direccion}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-sm-5">
+                                                <label class="caja" style="font-weight: bold;">Teléfono: </label>
+                                                <label class="caja"> {{this.dataReserva[0].telefono}}</label>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label class="caja" style="font-weight: bold;">Fecha de la
+                                                    reserva:</label>
+                                                <label class="caja"> {{this.dataReserva[0].fechaR | date:
+                                                    'dd/MM/yyyy'}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label class="caja" style="font-weight: bold;">Inicio:</label>
+                                                <label class="caja"> {{this.dataReserva[0].fechai | date:
+                                                    'dd/MM/yyyy'}}</label>
+
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label class="caja" style="font-weight: bold;">Fin:</label>
+                                                <label class="caja"> {{this.dataReserva[0].fechaf | date:
+                                                    'dd/MM/yyyy'}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label class="caja" style="font-weight: bold;">Total Días:</label>
+                                                <label class="caja"> {{this.dataReserva[0].dias}}</label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header card-header-toril">
+                                        <h4 class="card-title">Detalle de los servicios reservados</h4>
+
+                                    </div>
+
+                                    <div class="card-body table-responsive">
+                                        <table class="table table-hover" style="text-align: center;">
+                                            <thead class="text-toril">
+                                                <th>#</th>
+                                                <th>Descripcion</th>
+                                                <th> $ Valor/Persona</th>
+                                                <th>Cantidad Huespedes</th>
+                                                <th> $ Subtotal</th>
+                                            </thead>
+                                            <tbody>
+                                                <ng-container *ngFor="let detalle of dataDetalle; index as i">
+                                                    <tr>
+                                                        <td scope="row">{{i+1}}</td>
+                                                        <td>{{detalle.nombre}}</td>
+                                                        <td>{{detalle.valorPersona.toFixed(2)}}</td>
+                                                        <td>{{detalle.cantidad}}</td>
+                                                        <td> {{detalle.subtotal.toFixed(2)}}</td>
+                                                    </tr>
+
+                                                </ng-container>
+
+                                            </tbody>
+                                        </table>
+                                        <hr>
+                                        <hr>
+
+
+                                        <div class="row" style="padding: 3px;">
+                                            <div class="col-sm-7 ">
+
+                                            </div>
+                                            <div class="col-sm-2 " style="text-align: right;">
+                                                <label class="text-toril"
+                                                    style="font-weight: bold;font-size:14px;">SUBTOTAL: $</label>
+
+                                            </div>
+                                            <div class="col-sm-2" style="text-align: right; font-weight: bold;">
+                                                <label
+                                                    style="font-weight: bold;font-size:14px;color: black;">{{this.dataReserva[0].total.toFixed(2)}}</label>
+                                            </div>
+                                        </div>
+
+                                        <ng-container *ngIf="this.bandera==1">
+                                            <div class="row" style="padding: 3px;">
+                                                <div class="col-sm-9 " style="text-align: right;">
+                                                    <label class="text-toril"
+                                                        style="font-weight: bold;font-size:14px;">Abono: $</label>
+
+                                                </div>
+                                                <div class="col-sm-2" style="text-align: right; font-weight: bold;">
+                                                    <label
+                                                        style="font-weight: bold;font-size:14px;color: black;">{{this.abono.toFixed(2)}}</label>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding: 3px;">
+                                                <div class="col-sm-9 " style="text-align: right;">
+                                                    <label class="text-toril"
+                                                        style="font-weight: bold;font-size:14px;">SALDO $:</label>
+
+                                                </div>
+                                                <div class="col-sm-2" style="text-align: right; font-weight: bold;">
+                                                    <label
+                                                        style="font-weight: bold;font-size:14px;color: black;">{{this.saldo.toFixed(2)}}</label>
+                                                </div>
+                                            </div>
+
+                                        </ng-container>
+                         
+
+                                    </div><br>
+                                    <div class="col-2 d-flex"></div>
+                                    <div class="col-8 d-flex">
+                                        <textarea  class="form-control" type="text" disabled value="{{this.dataReserva[0].observacion}}"></textarea>
+                                    </div><hr>
+
+                                    <div class="col-12 d-flex justify-content-center"
+                                        style="color: rgb(8, 8, 8);font-weight: bold;">
+                                        NOTA: Los valores no incluyen IVA
+                                    </div><br>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <ng-container *ngIf="this.tipo != 3">
+                                            <a *ngIf="this.dataReserva[0].estado=='Pendiente'"
+                                                (click)="openScroll(contenido)"
+                                                class="btn float-right login_btn btn-dark" style="color: white;">
+                                                <i class="icon ion-md-checkmark"></i> Confirmar
+                                            </a>
+                                            <a *ngIf="this.dataReserva[0].estado=='Aceptada' || this.dataReserva[0].estado=='Pendiente' "
+                                                (click)="Cancelar()" class="btn float-right login_btn btn-dark"
+                                                style="color: white;">
+                                                <i class="icon ion-md-close"></i> Cancelar
+                                            </a>
+                                        </ng-container>
+
+                                        <a (click)="downloadPDF()" class="btn float-right login_btn btn-dark"
+                                            style="color: white;">
+                                            <i class="icon ion-md-print"></i> Imprimir
+                                        </a>
+                                    </div>
+                                </div>
+                                <ng-template #contenido let-modal>
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Abono</h4>
+                                        <button class="close" aria-label="close" type="button"
+                                            (click)="modal.dismiss()">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                            </div>
+                                            <div class="col-md-10">
+                                                <form #frmRegister="ngForm" class="form form-horizontal"
+                                                    (ngSubmit)="onRegister(frmRegister)">
+                                                    <div class="form-body">
+                                                        <div class="row">
+
+                                                            <div class="col-md-4">
+                                                                <label>
+                                                                    Valor Total: $
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <div class="position-relative has-icon-left">
+                                                                    <input class="form-control input" type="number"
+                                                                        id="total" type="total"
+                                                                        ngModel={{this.dataReserva[0].total.toFixed(2)}} required
+                                                                        total ngModel name="total" #total="ngModel">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>
+                                                                    Abono: $
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <div class="position-relative has-icon-left">
+                                                                    <input class="form-control input" id="abono"
+                                                                        type="number" required abono ngModel
+                                                                        name="abono" #abono="ngModel"
+                                                                        (ngModelChange)="onSearchChange($event)">
+                                                                    <div *ngIf="abono.invalid && (abono.dirty || abono.touched)"
+                                                                        class="text-danger">
+                                                                        <div *ngIf="abono.errors.required">
+                                                                            Ingrese un valor
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label>
+                                                                    Saldo: $
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-8 form-group">
+                                                                <div class="position-relative has-icon-left">
+                                                                    <input class="form-control input" type="number"
+                                                                        id="saldo" type="saldo" ngModel={{this.sal}}
+                                                                        required saldo ngModel name="saldo"
+                                                                        #saldo="ngModel">
+                                                                    <div *ngIf="saldo.invalid && (saldo.dirty || saldo.touched)"
+                                                                        class="text-danger">
+                                                                        <div *ngIf="saldo.errors.required">
+                                                                            Ingrese un valor
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12 d-flex justify-content-end">
+                                                                <input class="form-control input" type="hidden"
+                                                                    id="reserva"
+                                                                    ngModel={{this.dataReserva[0].idreserva}} required
+                                                                    reserva ngModel name="reserva" #reserva="ngModel">
+                                                                <input class="btn float-right login_btn btn-dark"
+                                                                    type="submit" value="Confirmar"
+                                                                    [disabled]="!frmRegister.valid">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <!--FOOTER PIE DE PAGINA-->
+            <app-footer></app-footer>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
